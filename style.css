@@ -1,37 +1,36 @@
 body {
-  
   background-color: #e0ffff;
-  padding: 200px 200px 200px 200px;
+  padding: 30px;
 }
 
-h1 {
-  text-align: center;
-}
+/*h1 {*/
+  /*text-align: center;*/
+/*}*/
 
-p {
-  color: darkgrey;
-}
+/*p {*/
+  /*color: darkgrey;*/
+/*}*/
 
-.team {
-  padding: 8px;
-  border: 1px solid black;
-  text-align: center;
-  width: 90%;
-  margin-right: auto;
-  margin-left: auto;
-  background-color: #ffffff;
-}
+/*.team {*/
+  /*padding: 8px;*/
+  /*border: 1px solid black;*/
+  /*text-align: center;*/
+  /*width: 90%;*/
+  /*margin-right: auto;*/
+  /*margin-left: auto;*/
+  /*background-color: #ffffff;*/
+/*}*/
 
-#teams {
-  box-shadow: 3px 3px 5px 6px #ccc;
-  padding: 8px;
-  text-align: left;
-  width: 50%;
-  margin-right: auto;
-  margin-left: auto;
-  background-color: #ffffff;
-}
+/*#teams {*/
+  /*box-shadow: 3px 3px 5px 6px #ccc;*/
+  /*padding: 8px;*/
+  /*text-align: left;*/
+  /*width: 50%;*/
+  /*margin-right: auto;*/
+  /*margin-left: auto;*/
+  /*background-color: #ffffff;*/
+/*}*/
 
-#test {
-  width: 80%;
-}
+/*#test {*/
+  /*width: 80%;*/
+/*}*/

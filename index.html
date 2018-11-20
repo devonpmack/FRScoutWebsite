@@ -19,7 +19,7 @@
         <h1 class="ui header">First Robotics Scout</h1>
         <div class="ui search">
             <div class="ui icon input">
-                <input class="prompt" type="text" placeholder="Team number...">
+                <input id="searcher" class="prompt" type="text" placeholder="Team number...">
                 <i class="search icon"></i>
             </div>
             <div class="results"></div>
@@ -118,8 +118,8 @@
         </form>
     </div>
 </div>
-<template>
-    <div class="column" id="team_template">
+<template id="team_template">
+    <div class="column">
         <div class="ui segments">
             <div class="ui segment">
                 <p class="teamname inline">0000</p>

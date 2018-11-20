@@ -104,6 +104,13 @@ $(document).ready(function () {
         .dropdown()
     ;
 
+    $( "#searcher" ).keyup(function() {
+        if (this.value == '') {
+            console.log(this.value);
+            display_teams(-1);
+        }
+    });
+
     display_teams(-1);
 
 

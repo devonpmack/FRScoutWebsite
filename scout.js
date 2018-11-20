@@ -15,7 +15,7 @@ function display_teams(number) {
             });
 
             var listV = document.getElementById('teamView');
-            var temp = document.getElementsByTagName("template")[0];
+            var temp = document.getElementsByClassName("team_template")[0];
             var nodeP = temp.content.cloneNode(true);
             var myNode = document.getElementById("teamView");
             while (myNode.firstChild) {
@@ -43,6 +43,30 @@ function display_teams(number) {
                     showActivity: false
                 })
             ;
+            $('.edit.modal').modal()
+                .modal({
+                    centered: false,
+                    onApprove: function (e) {
+                        if (!$('.ui.form.edit.teamform').form('is valid')) {
+                            return false;
+                        }
+                    }
+                })
+                .modal('attach events', '.edit.button', 'show');
+            ;
+
+            $('.edit.button').click(function(){
+                var m = $('.modal.edit');
+                m.modal('show');
+                var s = this.parentElement.querySelector('.teamname').innerHTML
+                $('.field_teamnumber').val(s.split(':')[0]);
+                $('.field_teamname').val(s.substring(s.indexOf(':') + 1).trim());
+                $('.field_notes').val(this.parentElement.parentElement.querySelector('.notes').textContent);
+                $('.field_issues').val(this.parentElement.parentElement.querySelector('.issues').textContent);
+
+                console.log(this.parentElement.querySelector('.teamname').innerHTML);
+
+            });
         }
 
     };
@@ -61,7 +85,7 @@ function display_teams(number) {
 }
 
 $(document).ready(function () {
-    $('.ui.form')
+    $('.ui.form.teamform')
         .form({
             fields: {
                 number: {
@@ -75,7 +99,7 @@ $(document).ready(function () {
                 }
             },
             onSuccess: function (e) {
-                $('.ui.modal.newteam').hide()
+                $('.ui.modal.teamform').hide()
             }
         })
         .api({
@@ -85,6 +109,7 @@ $(document).ready(function () {
             beforeSend: function (settings) {
             },
             onSuccess: function (data) {
+                display_teams(-1);
             }
         });
     ;
@@ -92,13 +117,12 @@ $(document).ready(function () {
         .modal({
             centered: false,
             onApprove: function (e) {
-                if (!$('.ui.form').form('is valid')) {
+                if (!$('.ui.form.newteam.teamform').form('is valid')) {
                     return false;
                 }
             }
         })
-        .modal('attach events', '.newteam.button', 'show')
-        .modal('setting', 'closable', false)
+        .modal('attach events', '#newteam_button', 'show')
     ;
     $('select.dropdown')
         .dropdown()
@@ -110,7 +134,6 @@ $(document).ready(function () {
             display_teams(-1);
         }
     });
-
     display_teams(-1);
 
 

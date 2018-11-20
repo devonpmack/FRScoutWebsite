@@ -32,15 +32,46 @@ $(document).ready(function(){
               // next.getElementsByClassName("ui secondary segment")[0].label()
               listV.appendChild(next);
           });
-          $('.ui.progress').progress(
-              {
-                  duration: 0
-              }
-          );
+          $('.ui.progress')
+              .progress({
+                  autoSuccess: false,
+                  showActivity: false
+              })
+          ;
 
           $('.ui.search')
               .search({
                   source: content
+              })
+          ;
+          $('.newteam.modal')
+              .modal({
+                  centered: false,
+                  onApprove: function(e) {
+                      if (e.hasClass('positive')) {
+                          console.log('test');
+                      }
+                  }
+              })
+              .modal('attach events', '.newteam.button', 'show')
+              .modal('setting', 'closable', false)
+          ;
+          $('select.dropdown')
+              .dropdown()
+          ;
+          $('.ui.form')
+              .form({
+                  fields: {
+                      numin: {
+                          identifier: 'numin',
+                          rules: [
+                              {
+                                  type   : 'integer',
+                                  prompt : 'Please enter a valid team number'
+                              }
+                          ]
+                      }
+                  }
               })
           ;
       }

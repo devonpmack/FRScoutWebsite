@@ -16,16 +16,19 @@
 <body>
 <div class="ui raised very padded text container segment" id="test">
     <header>
-    <h1 class="ui header">First Robotics Scout</h1>
-    <div class="ui search">
-        <div class="ui icon input">
-            <input class="prompt" type="text" placeholder="Team number...">
-            <i class="search icon"></i>
+        <h1 class="ui header">First Robotics Scout</h1>
+        <div class="ui search">
+            <div class="ui icon input">
+                <input class="prompt" type="text" placeholder="Team number...">
+                <i class="search icon"></i>
+            </div>
+            <div class="results"></div>
         </div>
-        <div class="results"></div>
-    </div>
+        <div class="ui positive newteam right labeled icon button right floated">
+            <i class="plus icon"></i>
+            New Team
+        </div>
     </header>
-    <br>
     <div class="ui two column stackable grid container" id="teamView">
         <div class="ui active inverted dimmer">
             <div class="ui mini text loader">
@@ -63,5 +66,162 @@
         </div>
     </div>
 </div>
+<div class="ui standard newteam modal">
+    <div class="header">Create New Team</div>
+    <div class="content">
+        <form class="ui fluid form newteam">
+            <div class="required field" id="#numin">
+                <label>Team Number</label>
+                <input placeholder="" type="text">
+            </div>
+            <div class="field">
+                <label>Team Name</label>
+                <input name="image" placeholder="" type="text">
+            </div>
+            <div class="field">
+                <label>Objective Score</label>
+                <select class="ui search dropdown">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Consistency</label>
+                <select class="ui search dropdown">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Driver Skill</label>
+                <select class="ui search dropdown">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Notes</label>
+                <textarea></textarea>
+            </div>
+            <div class="field">
+                <label>Issues</label>
+                <textarea></textarea>
+            </div>
+            <div class="actions">
+                <div class="ui red deny button">
+                    Cancel
+                </div>
+                <div class="ui primary submit positive right labeled icon button" id="createteam">
+                    Create
+                    <i class="checkmark icon"></i>
+                </div>
+            </div>
+            <div class="ui error message"></div>
+        </form>
+    </div>
+</div>
 </body>
 </html>
+
+<div class="ui standard newteam modal">
+    <div class="header">Create New Team</div>
+    <div class="content">
+        <form class="ui form newteam">
+            <div class="required field" id="#numin">
+                <label>Team Number</label>
+                <input placeholder="" type="text">
+            </div>
+            <div class="field">
+                <label>Team Name</label>
+                <input name="image" placeholder="" type="text">
+            </div>
+            <div class="field">
+                <label>Objective Score</label>
+                <select class="ui search dropdown">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Consistency</label>
+                <select class="ui search dropdown">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Driver Skill</label>
+                <select class="ui search dropdown">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Notes</label>
+                <textarea></textarea>
+            </div>
+            <div class="field">
+                <label>Issues</label>
+                <textarea></textarea>
+            </div>
+            <div class="actions">
+                <div class="ui red deny button">
+                    Cancel
+                </div>
+                <div class="ui primary submit positive right labeled icon button" id="createteam">
+                    Create
+                    <i class="checkmark icon"></i>
+                </div>
+            </div>
+            <div class="ui error message"></div>
+        </form>
+    </div>
+</div>

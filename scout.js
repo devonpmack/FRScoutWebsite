@@ -65,7 +65,17 @@ function display_teams(number) {
                 $('.field_issues').val(this.parentElement.parentElement.querySelector('.issues').textContent);
 
                 console.log(this.parentElement.querySelector('.teamname').innerHTML);
-
+            });
+            $('.delete.button').click(function(){
+                var n = this.parentElement.parentElement.querySelector('.field_teamnumber').value;
+                const url = 'https://frscout.herokuapp.com/api/v1/teams/' + n;
+                $.ajax({
+                    method: "delete",
+                    url: url,
+                    success: function(msg){
+                        display_teams(-1)
+                    }
+                });
             });
         }
 

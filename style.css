@@ -9,8 +9,19 @@ header {
 }
 
 body {
-  background-color: #e0ffff;
-  padding: 30px;
+    padding-top: 20px;
+    background-color: #e0ffff;
+}
+
+footer {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 12px;
+    padding: 30px;
+    height: 100%;
+    background-color: #ffffff;
+    color: lightgrey;
+    font-weight: bold;
 }
 
 .teamname {
@@ -27,17 +38,10 @@ body {
     text-align: right;
 }
 
-.button.newteam {
-    display: inline-block;
-}
-
 .ui.horizontal.label {
     display: inline-block;
 }
+
 .info {
     display: inline;
-}
-
-.ui.search {
-    display: inline-block;
 }

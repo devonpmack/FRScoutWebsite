@@ -1,244 +1,281 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>FR Scout</title>
 
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-    <script
-            src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-    <script src="js/scout.js"></script>
-    <link rel="stylesheet" type="text/css" href="./style.css">
+<head>
+  <meta charset="utf-8">
+  <title>FR Scout</title>
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+  <script src="js/scout.js"></script>
+  <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
+
 <body>
-<div class="ui raised very padded container segment">
+  <div class="ui raised very padded container segment">
     <header>
-        <h1 class="ui header">First Robotics Scout</h1>
-        <div class="ui inline search">
-            <div class="ui icon input">
-                <input id="searcher" class="prompt" type="text" placeholder="Team number...">
-                <i class="search icon"></i>
-            </div>
-            <div class="results"></div>
+      <h1 class="ui header">First Robotics Scout</h1>
+      <div class="ui inline search">
+        <div class="ui icon input">
+          <input id="searcher" class="prompt" type="text" placeholder="Team number...">
+          <i class="search icon"></i>
         </div>
-        <div class="ui positive newteam right labeled icon button right floated inline" id="newteam_button">
-            <i class="plus icon"></i>
-            New Team
-        </div>
+        <div class="results"></div>
+      </div>
+      <div class="ui positive newteam right labeled icon button right floated inline" id="newteam_button">
+        <i class="plus icon"></i>
+        New Team
+      </div>
     </header>
-    <div class="ui stackable grid container" id="teamView">
-        <div class="ui active inverted dimmer">
-            <div class="ui mini text loader">
-                Loading...
-            </div>
+    <div class="ui stackable grid container centered" id="teamView">
+      <div class="ui active inverted dimmer">
+        <div class="ui mini text loader">
+          Loading...
         </div>
+      </div>
     </div>
-</div>
-<footer>
+  </div>
+  <footer>
     <p>Site by Devon Mack 2018</p>
-</footer>
+  </footer>
 </body>
+
 </html>
 
 <div class="ui standard newteam teamform modal">
-    <div class="header">Create New Team</div>
-    <div class="content">
-        <form class="ui form newteam teamform">
-            <div class="required field">
-                <label>Team Number</label>
-                <input placeholder="Team #" name="number" type="text">
-            </div>
-            <div class="field">
-                <label>Team Name</label>
-                <input placeholder="Team Name" name="name" type="text">
-            </div>
-            <div class="field">
-                <label>Objective Score</label>
-                <select class="ui search dropdown" name="objective_score">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option selected="selected" value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-            </div>
-            <div class="field">
-                <label>Consistency</label>
-                <select class="ui search dropdown" name="consistency">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option selected="selected" value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-            </div>
-            <div class="field">
-                <label>Driver Skill</label>
-                <select class="ui search dropdown" name="driver_skill">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option selected="selected" value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-            </div>
-            <div class="field">
-                <label>Notes</label>
-                <textarea name="notes" placeholder="Notes about the team"></textarea>
-            </div>
-            <div class="field">
-                <label>Issues</label>
-                <textarea name="issues" placeholder="Issues with the team"></textarea>
-            </div>
-            <div class="ui error message"></div>
-            <div class="actions">
-                <div class="ui red deny button">
-                    Cancel
-                </div>
-                <div class="ui approve primary submit positive right labeled icon button teamform" id="createteam">
-                    Create
-                    <i class="checkmark icon"></i>
-                </div>
-            </div>
-        </form>
-    </div>
+  <div class="header">Create New Team</div>
+  <div class="content">
+    <form class="ui form newteam teamform">
+      <div class="required field">
+        <label>Team Number</label>
+        <input placeholder="Team #" name="number" type="text">
+      </div>
+      <div class="field">
+        <label>Team Name</label>
+        <input placeholder="Team Name" name="name" type="text">
+      </div>
+      <div class="field">
+        <label>Objective Score</label>
+        <select class="ui search dropdown" name="objective_score">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option selected="selected" value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Consistency</label>
+        <select class="ui search dropdown" name="consistency">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option selected="selected" value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Driver Skill</label>
+        <select class="ui search dropdown" name="driver_skill">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option selected="selected" value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Notes</label>
+        <textarea name="notes" placeholder="Notes about the team"></textarea>
+      </div>
+      <div class="field">
+        <label>Issues</label>
+        <textarea name="issues" placeholder="Issues with the team"></textarea>
+      </div>
+      <div class="ui error message"></div>
+      <div class="actions">
+        <div class="ui red deny button">
+          Cancel
+        </div>
+        <div class="ui approve primary submit positive right labeled icon button teamform" id="createteam">
+          Create
+          <i class="checkmark icon"></i>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 
 <div class="ui standard edit modal">
-    <div class="header">Edit Team</div>
-    <div class="content">
-        <form class="ui form edit teamform">
-            <div class="required field">
-                <label>Team Number</label>
-                <input placeholder="Team #" name="number" type="text" class="field_teamnumber">
-            </div>
-            <div class="field">
-                <label>Team Name</label>
-                <input placeholder="Team Name" name="name" type="text" class="field_teamname">
-            </div>
-            <div class="field">
-                <label>Objective Score</label>
-                <select class="ui search dropdown" name="objective_score" class="field_objscore">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option selected="selected" value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-            </div>
-            <div class="field">
-                <label>Consistency</label>
-                <select class="ui search dropdown" name="consistency" class="field_consistency">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option selected="selected" value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-            </div>
-            <div class="field">
-                <label>Driver Skill</label>
-                <select class="ui search dropdown" name="driver_skill" class="field_driverskill">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option selected="selected" value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-            </div>
-            <div class="field">
-                <label>Notes</label>
-                <textarea name="notes" placeholder="Notes about the team" class="field_notes"></textarea>
-            </div>
-            <div class="field">
-                <label>Issues</label>
-                <textarea name="issues" placeholder="Issues with the team" class="field_issues"></textarea>
-            </div>
-            <div class="ui error message"></div>
-            <div class="actions">
-                <div class="ui red deny button inline">
-                    Cancel
-                </div>
-                <div class="ui approve primary submit positive right labeled icon button teamform inline"
-                     id="createteam">
-                    Done
-                    <i class="checkmark icon"></i>
-                </div>
-                <div class="ui red deny inline left floated labeled icon button delete">
-                    Delete
-                    <i class="x icon"></i>
-                </div>
-            </div>
-        </form>
-    </div>
+  <div class="header">Edit Team</div>
+  <div class="content">
+    <form class="ui form edit teamform">
+      <div class="required field">
+        <label>Team Number</label>
+        <input placeholder="Team #" name="number" type="text" class="field_teamnumber">
+      </div>
+      <div class="field">
+        <label>Team Name</label>
+        <input placeholder="Team Name" name="name" type="text" class="field_teamname">
+      </div>
+      <div class="field">
+        <label>Objective Score</label>
+        <select class="ui search dropdown" name="objective_score" class="field_objscore">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option selected="selected" value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Consistency</label>
+        <select class="ui search dropdown" name="consistency" class="field_consistency">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option selected="selected" value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Driver Skill</label>
+        <select class="ui search dropdown" name="driver_skill" class="field_driverskill">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option selected="selected" value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Notes</label>
+        <textarea name="notes" placeholder="Notes about the team" class="field_notes"></textarea>
+      </div>
+      <div class="field">
+        <label>Issues</label>
+        <textarea name="issues" placeholder="Issues with the team" class="field_issues"></textarea>
+      </div>
+      <div class="ui error message"></div>
+      <div class="actions">
+        <div class="ui red deny button inline">
+          Cancel
+        </div>
+        <div class="ui approve primary submit positive right labeled icon button teamform inline" id="createteam">
+          Done
+          <i class="checkmark icon"></i>
+        </div>
+        <div class="ui red deny inline left floated labeled icon button delete">
+          Delete
+          <i class="x icon"></i>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 
 <template class="team_template">
-    <div class="sixteen wide mobile eight wide tablet five wide computer column">
-        <div class="ui segments">
-            <div class="ui segment head">
-                <div class="teamname_holder">
-                    <p class="teamname inline">0000</p>
-                </div>
-                <button class="ui very small inline icon edit button right floated">
-                    <i class="edit icon"></i>
-                </button>
-            </div>
-            <div class="ui secondary segment">
-                <div class="ui orange progress">
-                    <div class="label">Objective Score</div>
-                    <div class="bar"></div>
-                </div>
-                <div class="ui blue progress">
-                    <div class="label">Consistency</div>
-                    <div class="bar"></div>
-                </div>
-                <div class="ui violet progress">
-                    <div class="label">Driver Skill</div>
-                    <div class="bar"></div>
-                </div>
-            </div>
-            <div class="ui secondary segment">
-                <div class="ui horizontal label">Issues:</div>
-                <p class="info issues"></p>
-            </div>
-            <div class="ui secondary segment">
-                <div class="ui horizontal label">Notes:</div>
-                <p class="info notes"></p>
-            </div>
+  <div class="sixteen wide mobile eight wide tablet five wide computer column" style="justify-content: left;">
+    <div class="ui segments">
+      <div class="ui segment head">
+        <div class="teamname_holder">
+          <p class="teamname inline">0000</p>
         </div>
+        <button class="ui very small inline icon edit button right floated">
+          <i class="edit icon"></i>
+        </button>
+      </div>
+      <div class="ui secondary segment">
+        <div class="ui orange progress">
+          <div class="label">Objective Score</div>
+          <div class="bar"></div>
+        </div>
+        <div class="ui blue progress">
+          <div class="label">Consistency</div>
+          <div class="bar"></div>
+        </div>
+        <div class="ui violet progress">
+          <div class="label">Driver Skill</div>
+          <div class="bar"></div>
+        </div>
+      </div>
+
+      <div class="ui secondary segment notescontainer">
+        <div class="ui accordion">
+          <div class="title">
+            <div class="ui horizontal label">Notes:</div>
+            <p class="info notes detailed"></p>
+          </div>
+          <div class="content">
+          </div>
+        </div>
+      </div>
+
+      <div class="ui secondary segment issuescontainer">
+        <div class="ui accordion">
+          <div class="title">
+            <div class="ui horizontal label">Issues:</div>
+            <p class="info issues detailed"></p>
+          </div>
+          <div class="content">
+          </div>
+        </div>
+      </div>
     </div>
+</template>
+
+<template class="expand_accordion_notes">
+  <div class="ui accordion">
+    <div class="title">
+      <div class="ui horizontal label">Notes:</div>
+      <p class="info notes truncate"></p>
+      <i class="dropdown icon"></i>
+    </div>
+    <div class="content">
+      <p class="info notes detailed"></p>
+    </div>
+  </div>
+</template>
+<template class="expand_accordion_issues">
+  <div class="ui accordion">
+    <div class="title">
+      <div class="ui horizontal label">Issues:</div>
+      <p class="info issues truncate"></p>
+      <i class="dropdown icon"></i>
+    </div>
+    <div class="content">
+      <p class="info issues detailed"></p>
+    </div>
+  </div>
 </template>

@@ -3,10 +3,9 @@
 }
 
 header {
-    padding-left: 47px;
-    padding-right: 47px;
+    padding-left: 13px;
+    padding-right: 13px;
     padding-bottom: 30px;
-    padding-top: 30px;
 }
 
 body {
@@ -32,7 +31,7 @@ footer {
 }
 
 .teamname_holder {
-    width: 80%;
+    width: 200px;
     display: inline-block;
 }
 

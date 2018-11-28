@@ -1,0 +1,22 @@
+{
+  "name": "frscoutwebsite",
+  "version": "1.0.0",
+  "description": "First Robotics Scout",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devonpmack/FRScoutWebsite.git"
+  },
+  "dependencies": {
+    "express": "4.13.3"
+  },
+  "author": "Devon Mack",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devonpmack/FRScoutWebsite/issues"
+  },
+  "homepage": "https://github.com/devonpmack/FRScoutWebsite#readme"
+}

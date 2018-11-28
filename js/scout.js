@@ -1,30 +1,29 @@
 function display_teams(number) {
-    console.log(number);
     const Http = new XMLHttpRequest();
     const url = 'https://frscout.herokuapp.com/api/v1/teams';
-    var content;
+    let content = null;
 
     Http.open("GET", url);
     Http.send();
     Http.onreadystatechange = (e) => {
         if (Http.readyState === 4) {
-            var json = JSON.parse(Http.responseText);
+            const json = JSON.parse(Http.responseText);
             content = json["data"];
             content.forEach(element => {
                 element.title = element.number.toString();
             });
 
-            var listV = document.getElementById('teamView');
-            var temp = document.getElementsByClassName("team_template")[0];
-            var nodeP = temp.content.cloneNode(true);
-            var myNode = document.getElementById("teamView");
+            const listV = document.getElementById('teamView');
+            const temp = document.getElementsByClassName("team_template")[0];
+            const nodeP = temp.content.cloneNode(true);
+            const myNode = document.getElementById("teamView");
             while (myNode.firstChild) {
                 myNode.removeChild(myNode.firstChild);
             }
 
             content.forEach(function (element) {
                 if (number == -1 || number == '-' || element['title'].toString().startsWith(number.toString())) {
-                    var next = nodeP.cloneNode(true);
+                    const next = nodeP.cloneNode(true);
 
                     next.querySelector('.teamname').textContent = element['title'] + ": " + element['name'];// + element['notes'];
                     next.querySelector('.ui.orange.progress').setAttribute('data-percent', (element['objective_score'] * 10).toString());
@@ -56,9 +55,9 @@ function display_teams(number) {
             ;
 
             $('.edit.button').click(function(){
-                var m = $('.modal.edit');
+                const m = $('.modal.edit');
                 m.modal('show');
-                var s = this.parentElement.querySelector('.teamname').innerHTML
+                const s = this.parentElement.querySelector('.teamname').innerHTML
                 $('.field_teamnumber').val(s.split(':')[0]);
                 $('.field_teamname').val(s.substring(s.indexOf(':') + 1).trim());
                 $('.field_notes').val(this.parentElement.parentElement.querySelector('.notes').textContent);
@@ -67,7 +66,7 @@ function display_teams(number) {
                 console.log(this.parentElement.querySelector('.teamname').innerHTML);
             });
             $('.delete.button').click(function(){
-                var n = this.parentElement.parentElement.querySelector('.field_teamnumber').value;
+                const n = this.parentElement.parentElement.querySelector('.field_teamnumber').value;
                 const url = 'https://frscout.herokuapp.com/api/v1/teams/' + n;
                 $.ajax({
                     method: "delete",

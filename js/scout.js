@@ -1,30 +1,30 @@
 function display_teams(number) {
-  console.log(number);
-  const Http = new XMLHttpRequest();
-  const url = 'https://frscout.herokuapp.com/api/v1/teams';
-  var content;
+    const Http = new XMLHttpRequest();
+    const url = 'https://frscout.herokuapp.com/api/v1/teams';
+    let content = null;
 
-  Http.open("GET", url);
-  Http.send();
-  Http.onreadystatechange = (e) => {
-    if (Http.readyState === 4) {
-      var json = JSON.parse(Http.responseText);
-      content = json["data"];
-      content.forEach(element => {
-        element.title = element.number.toString();
-      });
+    Http.open("GET", url);
+    Http.send();
+    Http.onreadystatechange = (e) => {
+        if (Http.readyState === 4) {
+            const json = JSON.parse(Http.responseText);
+            content = json["data"];
+            content.forEach(element => {
+                element.title = element.number.toString();
+            });
 
-      var listV = document.getElementById('teamView');
-      var temp = document.getElementsByClassName("team_template")[0];
-      var nodeP = temp.content.cloneNode(true);
-      var myNode = document.getElementById("teamView");
-      while (myNode.firstChild) {
-        myNode.removeChild(myNode.firstChild);
-      }
+            const listV = document.getElementById('teamView');
+            const temp = document.getElementsByClassName("team_template")[0];
+            const nodeP = temp.content.cloneNode(true);
+            const myNode = document.getElementById("teamView");
+            while (myNode.firstChild) {
+                myNode.removeChild(myNode.firstChild);
+            }
 
-      content.forEach(function(element) {
-        if (number == -1 || number == '-' || element['title'].toString().startsWith(number.toString())) {
-          var next = nodeP.cloneNode(true);
+            content.forEach(function (element) {
+                if (number == -1 || number == '-' || element['title'].toString().startsWith(number.toString())) {
+                    if (number == -1 || number == '-' || element['title'].toString().startsWith(number.toString())) {
+          const next = nodeP.cloneNode(true);
 
           next.querySelector('.teamname').textContent = element['title'] + ": " + element['name']; // + element['notes'];
           next.querySelector('.ui.orange.progress').setAttribute('data-percent', (element['objective_score'] * 10).toString());
@@ -62,8 +62,51 @@ function display_teams(number) {
 
           // next.getElementsByClassName("ui secondary segment")[0].label()
           listV.appendChild(next);
+                }
+            });
+            $('.ui.progress')
+                .progress({
+                    autoSuccess: false,
+                    showActivity: false
+                })
+            ;
+            $('.edit.modal').modal()
+                .modal({
+                    centered: false,
+                    onApprove: function (e) {
+                        if (!$('.ui.form.edit.teamform').form('is valid')) {
+                            return false;
+                        }
+                    }
+                })
+                .modal('attach events', '.edit.button', 'show');
+            ;
+
+            $('.edit.button').click(function(){
+                const m = $('.modal.edit');
+                m.modal('show');
+                const s = this.parentElement.querySelector('.teamname').innerHTML
+                $('.field_teamnumber').val(s.split(':')[0]);
+                $('.field_teamname').val(s.substring(s.indexOf(':') + 1).trim());
+                $('.field_notes').val(this.parentElement.parentElement.querySelector('.notes').textContent);
+                $('.field_issues').val(this.parentElement.parentElement.querySelector('.issues').textContent);
+
+                console.log(this.parentElement.querySelector('.teamname').innerHTML);
+            });
+            $('.delete.button').click(function(){
+                const n = this.parentElement.parentElement.querySelector('.field_teamnumber').value;
+                const url = 'https://frscout.herokuapp.com/api/v1/teams/' + n;
+                $.ajax({
+                    method: "delete",
+                    url: url,
+                    success: function(msg){
+                        display_teams(-1)
+                    }
+                });
+            });
         }
-      });
+
+     
       $('.ui.progress')
         .progress({
           autoSuccess: false,

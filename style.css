@@ -18,7 +18,7 @@ footer {
     text-align: center;
     font-size: 12px;
     padding: 30px;
-    height: 100%;
+    height: 200px;
     background-color: #ffffff;
     color: lightgrey;
     font-weight: bold;
@@ -28,6 +28,15 @@ footer {
     font-weight: bold;
     font-family: Helvetica;
     font-size: 15px;
+}
+
+.teamname_holder {
+    width: 200px;
+    display: inline-block;
+}
+
+.ui.segment.head {
+    padding-bottom: 25px;
 }
 
 .inline {

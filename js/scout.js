@@ -85,8 +85,8 @@ function display_teams(number) {
         const s = this.parentElement.querySelector('.teamname').innerHTML
         $('.field_teamnumber').val(s.split(':')[0]);
         $('.field_teamname').val(s.substring(s.indexOf(':') + 1).trim());
-        $('.field_notes').val(this.parentElement.parentElement.querySelector('.notes').textContent);
-        $('.field_issues').val(this.parentElement.parentElement.querySelector('.issues').textContent);
+        $('.field_notes').val(this.parentElement.parentElement.querySelector('.notes.detailed').textContent);
+        $('.field_issues').val(this.parentElement.parentElement.querySelector('.issues.detailed').textContent);
 
         console.log(this.parentElement.querySelector('.teamname').innerHTML);
       });

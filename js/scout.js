@@ -31,6 +31,7 @@ function display_teams(number) {
           next.querySelector('.ui.orange.progress').setAttribute('data-percent', (element['objective_score'] * 10).toString());
           next.querySelector('.ui.blue.progress').setAttribute('data-percent', (element['consistency'] * 10).toString());
           next.querySelector('.ui.violet.progress').setAttribute('data-percent', (element['driver_skill'] * 10).toString());
+          next.querySelector('.ui.grey.progress').setAttribute('data-percent', (element['autonomous'] * 10).toString());
 
           // Decide whether to use an accordion or not
           const max = 25;
@@ -47,7 +48,7 @@ function display_teams(number) {
           next.querySelector('.info.notes.detailed').innerHTML = element['notes'];
 
 
-
+          console.log(element)
           if (element['issues'].length > max) {
             const node = $('.expand_accordion_issues')[0].content.cloneNode(true);
             next.querySelector('.issuescontainer').innerHTML = '';

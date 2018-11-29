@@ -1,5 +1,4 @@
 function display_teams(number) {
-  console.log(number);
   const Http = new XMLHttpRequest();
   const url = 'https://frscout.herokuapp.com/api/v1/teams';
 
@@ -48,7 +47,6 @@ function display_teams(number) {
           next.querySelector('.info.notes.detailed').innerHTML = element['notes'];
 
 
-          console.log(element)
           if (element['issues'].length > max) {
             const node = $('.expand_accordion_issues')[0].content.cloneNode(true);
             next.querySelector('.issuescontainer').innerHTML = '';
@@ -88,8 +86,11 @@ function display_teams(number) {
         $('.field_teamname').val(s.substring(s.indexOf(':') + 1).trim());
         $('.field_notes').val(this.parentElement.parentElement.querySelector('.notes.detailed').textContent);
         $('.field_issues').val(this.parentElement.parentElement.querySelector('.issues.detailed').textContent);
+        console.log("Hi!");
+        console.log($('.field_autonomous'))
 
-        console.log(this.parentElement.querySelector('.teamname').innerHTML);
+        $('select.dropdown.field_autonomous')
+          .dropdown('set selected', this.parentElement.parentElement.querySelector('.grey.progress').getAttribute("data-percent")/10);
       });
       $('.ui.accordion')
         .accordion()
@@ -161,7 +162,6 @@ $(document).ready(function() {
 
   $("#searcher").keyup(function() {
     if (this.value == '') {
-      console.log(this.value);
       display_teams(-1);
     }
   });

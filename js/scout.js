@@ -1,5 +1,4 @@
 function display_teams(number) {
-  console.log(number);
   const Http = new XMLHttpRequest();
   const url = 'https://frscout.herokuapp.com/api/v1/teams';
 
@@ -31,6 +30,7 @@ function display_teams(number) {
           next.querySelector('.ui.orange.progress').setAttribute('data-percent', (element['objective_score'] * 10).toString());
           next.querySelector('.ui.blue.progress').setAttribute('data-percent', (element['consistency'] * 10).toString());
           next.querySelector('.ui.violet.progress').setAttribute('data-percent', (element['driver_skill'] * 10).toString());
+          next.querySelector('.ui.grey.progress').setAttribute('data-percent', (element['autonomous'] * 10).toString());
 
           // Decide whether to use an accordion or not
           const max = 25;
@@ -45,7 +45,6 @@ function display_teams(number) {
 
           }
           next.querySelector('.info.notes.detailed').innerHTML = element['notes'];
-
 
 
           if (element['issues'].length > max) {
@@ -87,8 +86,11 @@ function display_teams(number) {
         $('.field_teamname').val(s.substring(s.indexOf(':') + 1).trim());
         $('.field_notes').val(this.parentElement.parentElement.querySelector('.notes.detailed').textContent);
         $('.field_issues').val(this.parentElement.parentElement.querySelector('.issues.detailed').textContent);
+        console.log("Hi!");
+        console.log($('.field_autonomous'))
 
-        console.log(this.parentElement.querySelector('.teamname').innerHTML);
+        $('select.dropdown.field_autonomous')
+          .dropdown('set selected', this.parentElement.parentElement.querySelector('.grey.progress').getAttribute("data-percent")/10);
       });
       $('.ui.accordion')
         .accordion()
@@ -160,7 +162,6 @@ $(document).ready(function() {
 
   $("#searcher").keyup(function() {
     if (this.value == '') {
-      console.log(this.value);
       display_teams(-1);
     }
   });

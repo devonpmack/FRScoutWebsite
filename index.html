@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <title>FR Scout</title>
@@ -15,7 +14,7 @@
 <body>
   <div class="ui raised very padded container segment">
     <header>
-      <h1 class="ui header">First Robotics Scout</h1>
+      <h1 class="ui header">FIRST Robotics Scout</h1>
       <div class="ui inline search">
         <div class="ui icon input">
           <input id="searcher" class="prompt" type="text" placeholder="Team number...">
@@ -88,6 +87,21 @@
       <div class="field">
         <label>Driver Skill</label>
         <select class="ui search dropdown" name="driver_skill">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option selected="selected" value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Autonomous</label>
+        <select class="ui search dropdown" name="autonomous">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -180,6 +194,21 @@
         </select>
       </div>
       <div class="field">
+        <label>Autonomous</label>
+        <select class="ui search dropdown field_autonomous" name="autonomous">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option selected="selected" value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+      <div class="field">
         <label>Notes</label>
         <textarea name="notes" placeholder="Notes about the team" class="field_notes"></textarea>
       </div>
@@ -229,6 +258,10 @@
           <div class="label">Driver Skill</div>
           <div class="bar"></div>
         </div>
+        <div class="ui grey progress">
+          <div class="label">Autonomous</div>
+          <div class="bar"></div>
+        </div>
       </div>
 
       <div class="ui secondary segment notescontainer">
@@ -259,7 +292,7 @@
   <div class="ui accordion">
     <div class="title">
       <i class="dropdown icon"></i>
-      
+
       <div class="ui horizontal label">Notes:</div>
       <p class="info notes truncate"></p>
     </div>

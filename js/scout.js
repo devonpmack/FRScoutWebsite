@@ -65,7 +65,8 @@ function display_teams(number) {
       $('.ui.progress')
         .progress({
           autoSuccess: false,
-          showActivity: false
+          showActivity: false,
+          barMinWidth: 0
         });
       $('.edit.modal').modal()
         .modal({
@@ -86,40 +87,48 @@ function display_teams(number) {
         $('.field_teamname').val(s.substring(s.indexOf(':') + 1).trim());
         $('.field_notes').val(this.parentElement.parentElement.querySelector('.notes.detailed').textContent);
         $('.field_issues').val(this.parentElement.parentElement.querySelector('.issues.detailed').textContent);
-        console.log("Hi!");
-        console.log($('.field_autonomous'))
 
-        $('select.dropdown.field_autonomous')
-          .dropdown('set selected', this.parentElement.parentElement.querySelector('.grey.progress').getAttribute("data-percent")/10);
+        $('.dropdown.field_autonomous')
+          .dropdown('set selected', this.parentElement.parentElement.querySelector('.grey.progress').getAttribute("data-percent") / 10)
+        ;
+        $('.dropdown.field_objscore')
+          .dropdown('set selected', this.parentElement.parentElement.querySelector('.orange.progress').getAttribute("data-percent")/10)
+        ;
+        $('.dropdown.field_driverskill')
+          .dropdown('set selected', this.parentElement.parentElement.querySelector('.violet.progress').getAttribute("data-percent")/10)
+        ;
+        $('.dropdown.field_consistency')
+          .dropdown('set selected', this.parentElement.parentElement.querySelector('.blue.progress').getAttribute("data-percent")/10)
+        ;
+
       });
       $('.ui.accordion')
-        .accordion()
-    ;
-    $('.delete.button').click(function() {
-      const n = this.parentElement.parentElement.querySelector('.field_teamnumber').value;
-      const url = 'https://frscout.herokuapp.com/api/v1/teams/' + n;
-      $.ajax({
-        method: "delete",
-        url: url,
-        success: function(msg) {
-          display_teams(-1)
-        }
+        .accordion();
+      $('.delete.button').click(function() {
+        const n = this.parentElement.parentElement.querySelector('.field_teamnumber').value;
+        const url = 'https://frscout.herokuapp.com/api/v1/teams/' + n;
+        $.ajax({
+          method: "delete",
+          url: url,
+          success: function(msg) {
+            display_teams(-1)
+          }
+        });
       });
-    });
-  }
-
-};
-
-$('.ui.search')
-  .search({
-    source: content,
-    onSearchQuery: function(e) {
-      display_teams(e);
-    },
-    onUpdate: function(e) {
-      display_teams(e);
     }
-  });
+
+  };
+
+  $('.ui.search')
+    .search({
+      source: content,
+      onSearchQuery: function(e) {
+        display_teams(e);
+      },
+      onUpdate: function(e) {
+        display_teams(e);
+      }
+    });
 }
 
 $(document).ready(function() {

@@ -65,7 +65,8 @@ function display_teams(number) {
       $('.ui.progress')
         .progress({
           autoSuccess: false,
-          showActivity: false
+          showActivity: false,
+          barMinWidth: 0
         });
       $('.edit.modal').modal()
         .modal({

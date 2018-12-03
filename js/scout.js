@@ -23,7 +23,7 @@ function display_teams(number) {
       }
 
       content.forEach(function(element) {
-        if (number == -1 || number == '-' || element['title'].toString().startsWith(number.toString())) {
+        if (number === -1 || number === '-' || element['title'].toString().startsWith(number.toString())) {
           const next = nodeP.cloneNode(true);
 
           next.querySelector('.teamname').textContent = element['title'] + ": " + element['name']; // + element['notes'];
@@ -170,7 +170,7 @@ $(document).ready(function() {
     .dropdown();
 
   $("#searcher").keyup(function() {
-    if (this.value == '') {
+    if (this.value === '') {
       display_teams(-1);
     }
   });

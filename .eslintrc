@@ -1,0 +1,9 @@
+{
+  "extends": "plugin:shopify/esnext",
+  "env": {
+    "browser": true,
+    "node": true,
+    "jquery": true,
+    "commonjs": true
+  }
+}

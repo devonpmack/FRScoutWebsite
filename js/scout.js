@@ -1,5 +1,10 @@
 addEventListener('load', loadSite);
 
+async function loadSite() {
+  configUI();
+  await Promise.all([displayMatches(), displayTeams(-1)]);
+}
+
 function displayTeams(number) {
   let content;
 
@@ -148,7 +153,7 @@ async function displayMatches() {
   console.log('stop1');
 }
 
-async function loadSite() {
+function configUI() {
   $('.ui.form.teamform')
     .form({
       fields: {
@@ -190,6 +195,4 @@ async function loadSite() {
   });
   $('.item')
     .tab();
-
-  await Promise.all([displayMatches(), displayTeams(-1)]);
 }

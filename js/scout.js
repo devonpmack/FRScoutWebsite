@@ -137,7 +137,7 @@ class Scout {
   }
 
   configTeamUI() {
-    const scout = this;
+    const self = this;
 
     $('.ui.progress')
       .progress({
@@ -185,27 +185,27 @@ class Scout {
     $('.delete.button').click((event) => {
       // Delete the team
       const teamNumber = event.target.parentElement.parentElement.querySelector('.field_teamnumber').value;
-      const url = `${scout.teamsUrl}/${teamNumber}`;
+      const url = `${self.teamsUrl}/${teamNumber}`;
       $.ajax({
         method: 'delete',
         url,
         async success() {
-          await scout.refreshTeams();
+          await self.refreshTeams();
         },
       });
     });
 
     $('.ui.search')
       .search({
-        source: scout.teams,
+        source: self.teams,
         onSearchQuery(query) {
-          scout.displayTeams(query);
+          self.displayTeams(query);
         },
         onUpdate(query) {
-          scout.displayTeams(query);
+          self.displayTeams(query);
         },
         onSelect(team) {
-          scout.displayTeams(team.number);
+          self.displayTeams(team.number);
         },
       });
   }
@@ -221,7 +221,7 @@ class Scout {
   }
 
   configUI() {
-    const scout = this;
+    const self = this;
 
     $('.ui.form.teamform')
       .form({
@@ -239,11 +239,11 @@ class Scout {
         },
       })
       .api({
-        url: scout.teamsUrl,
+        url: self.teamsUrl,
         method: 'POST',
         serializeForm: true,
         async onSuccess() {
-          await scout.refreshTeams();
+          await self.refreshTeams();
         },
       });
 
@@ -261,7 +261,7 @@ class Scout {
 
     $('#searcher').keyup((event) => {
       if (event.target.value === '') {
-        scout.displayTeams();
+        self.displayTeams();
       }
     });
     $('.item')

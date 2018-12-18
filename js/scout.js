@@ -1,16 +1,18 @@
 addEventListener('load', loadSite);
 
 async function loadSite() {
-  console.log("Loading site...");
+  console.log('Loading site...');
   configUI();
   await Promise.all([displayMatches(), displayTeams(-1)]);
-  console.log("Done loading site!");
+  console.log('Done loading site!');
 }
 
 async function displayTeams(number) {
-  console.log("Displaying teams...");
+  // Get data
+  console.log('Displaying teams...');
   const content = await getAPIData('https://frscout.herokuapp.com/api/v1/teams');
-  console.log("got team data");
+
+  // Make it searchable
   content.forEach((element) => {
     element.title = element.number.toString();
   });
@@ -19,7 +21,9 @@ async function displayTeams(number) {
   const temp = document.getElementsByClassName('team_template')[0];
   const nodeP = temp.content.cloneNode(true);
   const myNode = document.getElementById('teamView');
-  while (myNode.firstChild) { 
+
+  // Clear teams
+  while (myNode.firstChild) {
     myNode.removeChild(myNode.firstChild);
   }
 
@@ -74,28 +78,28 @@ async function displayTeams(number) {
     })
     .modal('attach events', '.edit.button', 'show');
 
-  $('.edit.button').click(function() {
+  $('.edit.button').click((event) => {
     const m = $('.modal.edit');
     m.modal('show');
-    const s = this.parentElement.querySelector('.teamname').innerHTML;
+    const s = event.target.parentElement.querySelector('.teamname').innerHTML;
     $('.field_teamnumber').val(s.split(':')[0]);
     $('.field_teamname').val(s.substring(s.indexOf(':') + 1).trim());
-    $('.field_notes').val(this.parentElement.parentElement.querySelector('.notes.detailed').textContent);
-    $('.field_issues').val(this.parentElement.parentElement.querySelector('.issues.detailed').textContent);
+    $('.field_notes').val(event.target.parentElement.parentElement.querySelector('.notes.detailed').textContent);
+    $('.field_issues').val(event.target.parentElement.parentElement.querySelector('.issues.detailed').textContent);
 
     $('.dropdown.field_autonomous')
-      .dropdown('set selected', this.parentElement.parentElement.querySelector('.grey.progress').getAttribute('data-percent') / 10);
+      .dropdown('set selected', event.target.parentElement.parentElement.querySelector('.grey.progress').getAttribute('data-percent') / 10);
     $('.dropdown.field_objscore')
-      .dropdown('set selected', this.parentElement.parentElement.querySelector('.orange.progress').getAttribute('data-percent') / 10);
+      .dropdown('set selected', event.target.parentElement.parentElement.querySelector('.orange.progress').getAttribute('data-percent') / 10);
     $('.dropdown.field_driverskill')
-      .dropdown('set selected', this.parentElement.parentElement.querySelector('.violet.progress').getAttribute('data-percent') / 10);
+      .dropdown('set selected', event.target.parentElement.parentElement.querySelector('.violet.progress').getAttribute('data-percent') / 10);
     $('.dropdown.field_consistency')
-      .dropdown('set selected', this.parentElement.parentElement.querySelector('.blue.progress').getAttribute('data-percent') / 10);
+      .dropdown('set selected', event.target.parentElement.parentElement.querySelector('.blue.progress').getAttribute('data-percent') / 10);
   });
   $('.ui.accordion')
     .accordion();
-  $('.delete.button').click(function() {
-    const n = this.parentElement.parentElement.querySelector('.field_teamnumber').value;
+  $('.delete.button').click((event) => {
+    const n = event.target.parentElement.parentElement.querySelector('.field_teamnumber').value;
     const url = `https://frscout.herokuapp.com/api/v1/teams/${n}`;
     $.ajax({
       method: 'delete',
@@ -116,12 +120,12 @@ async function displayTeams(number) {
         displayTeams(event);
       },
     });
-  console.log("Done displaying teams!");
+  console.log('Done displaying teams!');
 
 }
 
 async function displayMatches() {
-  console.log("Displaying matches...");
+  console.log('Displaying matches...');
   const matchData = await getAPIData('http://frscout.herokuapp.com/api/v1/matches');
 
   // Put them into the table
@@ -142,7 +146,7 @@ async function displayMatches() {
 
   $('table')
     .tablesort();
-  console.log("Done displaying matches!");
+  console.log('Done displaying matches!');
 }
 
 function configUI() {
@@ -180,9 +184,9 @@ function configUI() {
   $('select.dropdown')
     .dropdown();
 
-  $('#searcher').keyup((event) => {
+  $('#searcher').keyup(async (event) => {
     if (event.target.value === '') {
-      displayTeams(-1);
+      await displayTeams(-1);
     }
   });
   $('.item')

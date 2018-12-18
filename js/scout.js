@@ -1,3 +1,5 @@
+addEventListener('load', loadSite);
+
 function displayTeams(number) {
   let content;
 
@@ -118,36 +120,35 @@ function displayTeams(number) {
     });
 }
 
-function displayMatches() {
-  fetch('http://frscout.herokuapp.com/api/v1/matches')
-    .then((response) => {
-      return response.json();
-    })
-    .then((matches) => {
-      const matchData = matches.data;
+async function displayMatches() {
+  console.log('start1');
+  const response = await fetch('http://frscout.herokuapp.com/api/v1/matches');
+  const json = await response.json();
+  const matchData = json.data;
 
-      // Put them into the table
-      const table = document.querySelector('#match_data');
+  // Put them into the table
+  const table = document.querySelector('#match_data');
 
-      matchData.forEach((match) => {
-        const nextRow = document.querySelector('#matchRow').content.cloneNode(true);
-        nextRow.querySelector('.matchNumber').innerText = match.number;
-        nextRow.querySelector('.blueAlliance').innerHTML = `${match.blue_alliance_1} <br> ${match.blue_alliance_2} <br> ${match.blue_alliance_3}`;
-        nextRow.querySelector('.redAlliance').innerHTML = `${match.red_alliance_1} <br> ${match.red_alliance_2} <br> ${match.red_alliance_3}`;
-        nextRow.querySelector('.redScore').innerText = match.red_score;
-        nextRow.querySelector('.blueScore').innerText = match.blue_score;
-        nextRow.querySelector('.redRanking').innerText = match.red_ranking_points;
-        nextRow.querySelector('.blueRanking').innerText = match.blue_ranking_points;
+  matchData.forEach((match) => {
+    const nextRow = document.querySelector('#matchRow').content.cloneNode(true);
+    nextRow.querySelector('.matchNumber').innerText = match.number;
+    nextRow.querySelector('.blueAlliance').innerHTML = `${match.blue_alliance_1} <br> ${match.blue_alliance_2} <br> ${match.blue_alliance_3}`;
+    nextRow.querySelector('.redAlliance').innerHTML = `${match.red_alliance_1} <br> ${match.red_alliance_2} <br> ${match.red_alliance_3}`;
+    nextRow.querySelector('.redScore').innerText = match.red_score;
+    nextRow.querySelector('.blueScore').innerText = match.blue_score;
+    nextRow.querySelector('.redRanking').innerText = match.red_ranking_points;
+    nextRow.querySelector('.blueRanking').innerText = match.blue_ranking_points;
 
-        table.appendChild(nextRow);
-      })
-    })
-    .catch(() => {
-      console.log("Can't get data!");
-    });
+    table.appendChild(nextRow);
+  });
+
+  $('table')
+    .tablesort();
+
+  console.log('stop1');
 }
 
-$(document).ready(() => {
+async function loadSite() {
   $('.ui.form.teamform')
     .form({
       fields: {
@@ -190,16 +191,5 @@ $(document).ready(() => {
   $('.item')
     .tab();
 
-
-  displayMatches();
-
-  $('table')
-    .tablesort()
-    .data('tablesort')
-    .sort($('th.default-sort'));
-
-
-  displayTeams(-1);
-
-
-});
+  await Promise.all([displayMatches(), displayTeams(-1)]);
+}

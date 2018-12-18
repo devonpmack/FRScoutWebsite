@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>FR Scout</title>
@@ -7,34 +8,62 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+  <script src="https://semantic-ui.com/javascript/library/tablesort.js"></script>
   <script src="js/scout.js"></script>
   <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 
 <body>
-  <div class="ui raised very padded container segment">
-    <header>
-      <h1 class="ui header">FIRST Robotics Scout</h1>
-      <div class="ui inline search">
-        <div class="ui icon input">
-          <input id="searcher" class="prompt" type="text" placeholder="Team number...">
-          <i class="search icon"></i>
+  <article>
+    <div class="ui top attached tabular menu">
+      <a class="active item" data-tab="teams">
+        Teams
+      </a>
+      <a class="item" data-tab="matches">
+        Matches
+      </a>
+    </div>
+    <div class="ui bottom attached tab raised very padded container segment active" data-tab="teams">
+      <header>
+        <h1 class="ui header">FIRST Robotics Scout</h1>
+        <div class="ui inline search">
+          <div class="ui icon input">
+            <input id="searcher" class="prompt" type="text" placeholder="Team number...">
+            <i class="search icon"></i>
+          </div>
+          <div class="results"></div>
         </div>
-        <div class="results"></div>
-      </div>
-      <div class="ui positive newteam right labeled icon button right floated inline" id="newteam_button">
-        <i class="plus icon"></i>
-        New Team
-      </div>
-    </header>
-    <div class="ui stackable grid container centered" id="teamView">
-      <div class="ui active inverted dimmer">
-        <div class="ui mini text loader">
-          Loading...
+        <div class="ui positive newteam right labeled icon button right floated inline" id="newteam_button">
+          <i class="plus icon"></i>
+          New Team
+        </div>
+      </header>
+      <div class="ui stackable grid container centered" id="teamView">
+        <div class="ui active inverted dimmer">
+          <div class="ui mini text loader">
+            Loading...
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    <div class="ui bottom attached tab raised padded container segment" data-tab="matches">
+      <table class="ui selectable sortable celled table">
+        <thead>
+          <tr>
+            <th class="sorted default-sort">Match #</th>
+            <th>Blue Alliance</th>
+            <th>Red Alliance</th>
+            <th>Red Score</th>
+            <th>Blue Score</th>
+            <th>Red Ranking Points</th>
+            <th>Blue Ranking Points</th>
+          </tr>
+        </thead>
+        <tbody id="match_data">
+        </tbody>
+      </table>
+    </div>
+  </article>
   <footer>
     <p>Site by Devon Mack 2018</p>
   </footer>
@@ -320,4 +349,16 @@
       <p class="info issues detailed"></p>
     </div>
   </div>
+</template>
+
+<template id="matchRow">
+  <tr>
+    <td data-label="Match #"><p class="matchNumber"></p></td>
+    <td data-label="Blue Alliance"><p class="blueAlliance"></p></td>
+    <td data-label="Red Alliance"><p class="redAlliance"></p></td>
+    <td data-label="Red Score"><p class="redScore"></p></td>
+    <td data-label="Blue Score"><p class="blueScore"></p></td>
+    <td data-label="Red Ranking Points"><p class="redRanking"></p></td>
+    <td data-label="Blue Ranking Points"><p class="blueRanking"></p></td>
+  </tr>
 </template>

@@ -6,18 +6,7 @@ async function loadSite() {
   const scout = new Scout('https://frscout.herokuapp.com/api/v1/teams',
                           'http://frscout.herokuapp.com/api/v1/matches');
 
-  scout.configUI(scout);
-
-  console.log("Getting API data...");
-  await scout.fetchData();
-  console.log('Got data!');
-  scout.display();
+  await scout.initialize();
 
   console.log('Done loading site!');
-}
-
-async function getAPIData(url) {
-  const response = await fetch(url);
-  const json = await response.json();
-  return json.data;
 }

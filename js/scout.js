@@ -12,7 +12,8 @@ class Scout {
 
   async refreshTeams() {
     await this.fetchTeamsData();
-    this.displayTeams();
+
+    this.displayTeams(document.querySelector('#searcher').value);
   }
 
   async fetchTeamsData() {
@@ -132,6 +133,27 @@ class Scout {
     nextRow.querySelector('.blueScore').innerText = matchData.blue_score;
     nextRow.querySelector('.redRanking').innerText = matchData.red_ranking_points;
     nextRow.querySelector('.blueRanking').innerText = matchData.blue_ranking_points;
+
+
+
+    // if (matchData.red_score > matchData.blue_score) {
+    //   nextRow.childNodes.forEach((element) => {
+    //     element.className = 'negative';
+    //   });
+    // }
+
+    let colour = '';
+    if (matchData.red_score > matchData.blue_score) {
+      colour = 'negative';
+    } else if (matchData.red_score < matchData.blue_score) {
+      colour = 'positive';
+    } else {
+      // colour = 'warning';
+    }
+
+    nextRow.childNodes.forEach((element) => {
+      element.className = colour;
+    });
 
     return nextRow;
   }

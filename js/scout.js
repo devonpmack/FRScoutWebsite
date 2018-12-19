@@ -10,6 +10,11 @@ class Scout {
     this.display();
   }
 
+  display() {
+    this.displayMatches();
+    this.displayTeams();
+  }
+
   async refreshTeams() {
     await this.fetchTeamsData();
 
@@ -39,11 +44,6 @@ class Scout {
     return json.data;
   }
 
-  display() {
-    this.displayMatches();
-    this.displayTeams();
-  }
-
   displayMatches() {
     console.log('Displaying matches...');
 
@@ -55,8 +55,22 @@ class Scout {
     });
 
     // Sort table
-    $('table')
-      .tablesort();
+    $('table').tablesort();
+    const tablesort = $('table').data('tablesort');
+
+    tablesort.settings.compare = function (a, b) {
+      const c = parseInt(a, 10);
+      const d = parseInt(b, 10);
+      if (c < d) {
+        return -1;
+      }
+      if (c > d) {
+        return 1;
+      }
+      return 0;
+    };
+
+    tablesort.sort($('th.default-sort'));
 
     console.log('Done displaying matches!');
   }
@@ -134,21 +148,11 @@ class Scout {
     nextRow.querySelector('.redRanking').innerText = matchData.red_ranking_points;
     nextRow.querySelector('.blueRanking').innerText = matchData.blue_ranking_points;
 
-
-
-    // if (matchData.red_score > matchData.blue_score) {
-    //   nextRow.childNodes.forEach((element) => {
-    //     element.className = 'negative';
-    //   });
-    // }
-
     let colour = '';
     if (matchData.red_score > matchData.blue_score) {
       colour = 'negative';
     } else if (matchData.red_score < matchData.blue_score) {
       colour = 'positive';
-    } else {
-      // colour = 'warning';
     }
 
     nextRow.childNodes.forEach((element) => {
@@ -204,17 +208,17 @@ class Scout {
     $('.ui.accordion')
       .accordion();
 
-    $('.delete.button').click((event) => {
+    $('.delete.button').click(async (event) => {
       // Delete the team
       const teamNumber = event.target.parentElement.parentElement.querySelector('.field_teamnumber').value;
       const url = `${self.teamsUrl}/${teamNumber}`;
-      $.ajax({
+
+      await fetch(url, {
         method: 'delete',
-        url,
-        async success() {
-          await self.refreshTeams();
-        },
       });
+
+      await this.refreshTeams();
+
     });
 
     $('.ui.search')
